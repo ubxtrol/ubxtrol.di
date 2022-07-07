@@ -4,8 +4,8 @@
 
 ### 特点
 
--   兼容官方依赖注入实现;
--   支持属性注入(同样支持构造方法注入).
+-   兼容官方依赖注入实现；
+-   支持属性注入（同样支持构造方法注入）。
 
 ### 安装
 
@@ -13,13 +13,13 @@
 
 ### 使用
 
--   将普通属性变为依赖属性仅需满足两个条件:
+-   将普通属性变为依赖属性仅需满足两个条件：
 
-    1.  公共属性(`public`)支持写入(写入访问修饰符不限, 推荐使用`private`);
-    2.  对属性添加特性`UbxtrolAutowiredAttribute`.
+    1.  公共属性（`public`）支持写入（写入访问修饰符不限，推荐使用`private`）；
+    2.  对属性添加`UbxtrolAutowiredAttribute`特性。
 
--   其他功能使用方法与官方依赖注入框架基本一致.
--   注意: 依赖属性将在对象实例创建后注入, 因此在对象构造方法中无法访问依赖属性, 若要在构造方法中使用依赖, 请使用构造方法注入.
+-   其他功能使用方法与官方依赖注入框架基本一致。
+-   注意：依赖属性将在对象实例创建后注入，因此在对象构造方法中无法访问依赖属性，若要在构造方法中使用依赖，请使用构造方法注入。
 
 ### 示例
 
@@ -100,9 +100,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 #### 控制器属性注入
 
-默认情况下, ASP.NET Core 控制器类型(`Controllers`)不会作为服务注册到容器, 因此为控制器添加依赖属性将不会被自动注入.
+默认情况下，ASP.NET Core 控制器类型（`Controllers`）不会作为服务注册到容器，因此为控制器添加依赖属性将不会被自动注入。
 
-若希望在控制器类型中使用依赖属性, 需要在`Startup.ConfigureServices`方法中将控制器类型作为服务注册到容器:
+若希望在控制器类型中使用依赖属性，需要在`Startup.ConfigureServices`方法中将控制器类型作为服务注册到容器：
 
 ```c#
 public void ConfigureServices(IServiceCollection services)
@@ -115,12 +115,12 @@ public void ConfigureServices(IServiceCollection services)
 
 #### 服务作用域验证
 
-启用服务作用域验证将检测并禁止具有局部作用域的服务在全局范围创建; 具体而言, 启用该选项将检测并禁止以下两种情况:
+启用服务作用域验证将检测并禁止具有局部作用域的服务在全局范围创建；具体而言，启用该选项将检测并禁止以下两种情况：
 
-1. 注册为`Scoped`的服务直接或间接从根服务提供对象创建;
-2. 注册为`Scoped`的服务被注册为`Singleton`的服务所依赖.
+1. 注册为`Scoped`的服务直接或间接从根服务提供对象创建；
+2. 注册为`Scoped`的服务被注册为`Singleton`的服务所依赖。
 
-默认情况下`不验证`服务作用域, 以下示例演示如何启用服务作用域验证:
+默认情况下`不验证`服务作用域，以下示例演示如何启用服务作用域验证：
 
 -   .NET Core
 
@@ -154,9 +154,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 #### 可选的依赖属性
 
-若依赖属性不是必须的, 或应用程序具备不依赖服务的默认行为,可能需要将某个依赖属性设置为可选的.
+若依赖属性不是必须的，或应用程序具备不依赖服务的默认行为，可能需要将某个依赖属性设置为可选的。
 
-默认情况下, 所有的依赖属性都是必须的, 以下示例演示如何设置可选的依赖属性:
+默认情况下，所有的依赖属性都是必须的，以下示例演示如何设置可选的依赖属性：
 
 ```c#
 internal class MyServiceA
@@ -166,4 +166,4 @@ internal class MyServiceA
 }
 ```
 
-对特性`UbxtrolAutowired`设置`IgnoreWhenNotFound = true`后, 当`MyServiceB`未被注册为服务时, 将忽略该属性的注入行为.
+对特性`UbxtrolAutowired`设置`IgnoreWhenNotFound = true`后，当`MyServiceB`未被注册为服务时，将忽略该属性的注入行为。
